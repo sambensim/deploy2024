@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import List from './components/List';
 import AddEntry from './components/AddEntry';
+import AddMovieEntry from './components/AddMovieEntry';
+import AddBookEntry from './components/AddBookEntry';
 
 function App() {
   const [items, setItems] = useState(() => {
@@ -30,7 +32,9 @@ function App() {
 
   return (
     <div className="max-w-md mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">Content Saver</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Suspend</h1>
+      <AddMovieEntry onAdd={handleAddItem} />
+      <AddBookEntry onAdd={handleAddItem} />
       <AddEntry onAdd={handleAddItem} />
       <List
         items={items}

@@ -3,16 +3,19 @@ import React, { useState } from 'react';
 function AddEntry({ onAdd }) {
 const [input, setInput] = useState('');
 
+
 const handleAdd = () => {
     if (input.trim() !== '') {
-    onAdd({ title: input, consumed: false });
+    onAdd({
+        type: 'plaintext',
+        title: input,
+        consumed: false });
     setInput('');
     }
 };
 
 return (
     <div className="p-4">
-    <h2 className="text-2xl mb-4">Add New Item</h2>
     <div className="flex items-center">
         <input
         type="text"
