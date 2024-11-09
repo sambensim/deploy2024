@@ -1,23 +1,35 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Node dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
-
-# production
+# Next.js build output
+/.next
+/out
 /build
 
-# misc
-.DS_Store
+# Static build exports
+/out
+
+# Testing coverage
+/coverage
+
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# Miscellaneous
+.DS_Store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Vercel
+.vercel
+
+# Optional, for macOS users
+*.log
+
+# TypeScript
+*.tsbuildinfo
