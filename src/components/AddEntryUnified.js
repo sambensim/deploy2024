@@ -110,6 +110,10 @@ function AddEntry({ onAdd }) {
             });
         } else if (item.type === 'link') {
             // Link structure
+            if (!item.url || !item.url.trim()) {
+                alert('Invalid URL');
+                return;
+            }
             const { title, favicon, bodyText } = await fetchPageTitle(item.url);
             onAdd({
                 type: 'link',

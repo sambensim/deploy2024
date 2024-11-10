@@ -50,6 +50,7 @@ function List({ items, onToggleConsumed, onDelete }) {
 
     const filteredItems = items
         .filter((item) => filters[item.type] && (filters.consumed || !item.consumed))
+        .sort((a, b) => new Date(b.id) - new Date(a.id)) // Ensure most recently added items appear first
         .sort((a, b) => a.consumed - b.consumed); // Ensure consumed items are at the bottom
 
     function renderIcon(type) {
