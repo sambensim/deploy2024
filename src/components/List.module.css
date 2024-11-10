@@ -1,0 +1,64 @@
+/* List.module.css */
+
+.listContainer {
+    padding: 1rem;
+}
+
+.listTitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb; /* Light gray border */
+    border-radius: 0.25rem; /* Rounded corners */
+}
+
+.consumed {
+    text-decoration: line-through;
+    color: #6b7280; /* Gray color */
+}
+
+.listContent {
+    display: flex;
+    align-items: center;
+}
+
+.listImg {
+    width: 3rem;
+    height: 4rem;
+    margin-right: 1rem;
+}
+
+.listTitleText {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.listSubtext {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.button {
+    padding: 0.25rem 0.5rem;
+    color: white;
+    border-radius: 0.25rem;
+}
+
+.buttonCheck {
+    background-color: #3b82f6; /* Blue */
+    margin-right: 0.5rem;
+}
+
+.buttonDelete {
+    background-color: #ef4444; /* Red */
+}
+
+.noItems {
+    color: #6b7280; /* Gray */
+}
