@@ -1,70 +1,33 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Suspend
+### What
+Website or app for saving content for later consumption
+##### MVP
+Single list with extremely simple UI - add entry button allows you to search a database of books, movies, and tv shows, and allows you to enter any of those, links to websites, or plain text.
+- Ability to check entries off when consumed and to remove them if added by accident.
+- No user authentication, accounts, or storage: everything should be stored locally or, if it's easier, it should be a global list that anyone can add to
+##### Expansion
+- Tag entries
+- Write notes on entries
+- Use ai to read lists of top 100 X and add each to your list
+- Use ai to read text from a picture of a book or something and add it
+- Section for 'learn later' and 'look up later'
+- User accounts, authentication, and data storage
+- Click on entries for more info like description and release date
+- Automatically rename links
+- Where to watch saved movies and shows
+- Chrome Extension to Easily Save Pages like (now defunct) Omnivore Extension
+### Why
+- As far as I can tell there is no general 'watch later' app or site for all media types.
+- The watch later parts of other apps are usually secondary considerations and have limited functionality (no tagging or ability to add notes (e.g. recommended by greg, this article is a list of movies to watch))
+##### Competitors
+While there's nothing I can find exactly like this, popular services with 'later' lists or that are 'later' lists for specific types of media are:
+- Omnivore (only articles)
+- are.na
+- Youtube (only youtube videos)
+- Letterboxd (only movies)
+- MyAnimeList (only anime)
+##### Business
+While the goal is to make this service free and minimalist, I do see at least one clear route to money: ads can be hyper targeted. It's rare one service has information on someone beyond a single interest (the only exception I can think of being YouTube, Amazon, and Google Search).
+### How
+[Movie Database](https://www.omdbapi.com/), [Book Database](https://isbndb.com/apidocs/v2)
+React. Tailwind? Vercel. Supabase? Something simpler?
