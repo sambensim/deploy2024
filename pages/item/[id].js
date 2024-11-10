@@ -141,7 +141,6 @@ function ItemPage() {
                             {item.poster && <img src={item.poster} alt={item.title} className={styles.thumbnail} />}
                         </div>
                         <div className={styles.infoContainer}>
-                            <h2>{movieDetails.Title}</h2>
                             <p><strong>Year:</strong> {movieDetails.Year}</p>
                             <p><strong>Runtime:</strong> {movieDetails.Runtime}</p>
                             <p><strong>Genre:</strong> {movieDetails.Genre}</p>
@@ -160,7 +159,6 @@ function ItemPage() {
                             )}
                         </div>
                         <div className={styles.infoContainer}>
-                            <h2>{bookDetails.volumeInfo.title}</h2>
                             <p><strong>Authors:</strong> {bookDetails.volumeInfo.authors.join(', ')}</p>
                             <p><strong>Published Date:</strong> {bookDetails.volumeInfo.publishedDate}</p>
                             <p><strong>Publisher:</strong> {bookDetails.volumeInfo.publisher}</p>
@@ -176,7 +174,6 @@ function ItemPage() {
                             )}
                         </div>
                         <div className={styles.infoContainer}>
-                            <h2>{albumDetails.name}</h2>
                             <p><strong>Artist:</strong> {albumDetails.artist.map(a => a.name).join(', ')}</p>
                             <p><strong>Year:</strong> {albumDetails.year}</p>
                             <p><strong>Genre:</strong> {albumDetails.genre.map(g => g.name).join(', ')}</p>
@@ -191,9 +188,19 @@ function ItemPage() {
                             )}
                         </div>
                         <div className={styles.infoContainer}>
-                            <h2>{podcastDetails.name}</h2>
                             <p><strong>Publisher:</strong> {podcastDetails.itunesInfo.publisherName}</p>
                             <p><strong>Description:</strong> {podcastDetails.description}</p>
+                        </div>
+                    </div>
+                )}
+                {item.type === 'link' && (
+                    <div className={styles.detailsContainer}>
+                        <div className={styles.thumbnailContainer}>
+                            {item.favicon && <img src={item.favicon} alt={item.title} className={styles.thumbnail} />}
+                        </div>
+                        <div className={styles.infoContainer}>
+                            <p><strong>URL:</strong> <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></p>
+                            <p><strong>Sample Text:</strong> {item.bodyText}</p>
                         </div>
                     </div>
                 )}

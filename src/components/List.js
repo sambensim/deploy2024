@@ -21,6 +21,8 @@ function List({ items, onToggleConsumed, onDelete }) {
                 return <span className={styles.icon}>🎵</span>; // Placeholder for album icon
             case 'podcast':
                 return <span className={styles.icon}>🎙️</span>; // Placeholder for podcast icon
+            case 'link':
+                return <span className={styles.icon}>🔗</span>; // Placeholder for link icon
             default:
                 return <span className={styles.icon}>📄</span>; // Placeholder for default icon
         }
@@ -33,14 +35,15 @@ function List({ items, onToggleConsumed, onDelete }) {
                 {item.poster && <img src={item.poster} alt={item.title} className={styles.listImg} />}
                 {item.thumbnail && <img src={item.thumbnail} alt={item.title} className={styles.listImg} />}
                 {item.image && <img src={item.image} alt={item.title} className={styles.listImg} />}
-                {item.imageUrl && <img src={item.imageUrl} alt={item.title} className={styles.listImg} />} {/* Add this line */}
+                {item.imageUrl && <img src={item.imageUrl} alt={item.title} className={styles.listImg} />}
+                {item.favicon && <img src={item.favicon} alt={item.title} className={styles.listImg} />}
                 <div>
                     <h3 className={styles.listTitleText}>{item.title}</h3>
                     {item.notes ? (
                         <p className={styles.listSubtext}>{item.notes}</p>
                     ) : (
                         <p className={styles.listSubtext}>
-                            {item.year || item.authors || item.publisher || 'Unknown'}
+                            {item.type === 'link' ? item.url : item.year || item.authors || item.publisher || 'Unknown'}
                         </p>
                     )}
                 </div>
