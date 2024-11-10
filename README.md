@@ -22,7 +22,7 @@ Single list with extremely simple UI - add entry button allows you to search a d
 ##### Competitors
 While there's nothing I can find exactly like this, popular services with 'later' lists or that are 'later' lists for specific types of media are:
 - Omnivore (only articles)
-- are.na
+- are.na (I don't understand it)
 - Youtube (only youtube videos)
 - Letterboxd (only movies)
 - MyAnimeList (only anime)
