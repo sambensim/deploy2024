@@ -23,6 +23,10 @@
     color: var(--text-color); /* Black color */
 }
 
+.consumed .icon {
+    text-decoration: none; /* Ensure the icon is not strikethrough */
+}
+
 .listContent {
     display: flex;
     align-items: center;

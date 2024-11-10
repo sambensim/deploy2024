@@ -223,7 +223,16 @@ function ItemPage() {
                         </div>
                         <div className={styles.infoContainer}>
                             <p><strong>Publisher:</strong> {podcastDetails.itunesInfo.publisherName}</p>
-                            <p><strong>Description:</strong> {podcastDetails.description}</p>
+                            <p><strong>Description:</strong> {isExpanded ? podcastDetails.description : truncateText(podcastDetails.description, 300)}
+                                {podcastDetails.description.length > 100 && (
+                                    <button
+                                        className={styles.seeMoreButton}
+                                        onClick={() => handleToggleExpand(item.id)}
+                                    >
+                                        {isExpanded ? 'See less' : 'See more'}
+                                    </button>
+                                )}
+                            </p>
                         </div>
                     </div>
                 )}
