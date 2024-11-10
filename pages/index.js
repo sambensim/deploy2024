@@ -57,7 +57,7 @@ export default function Home() {
     return (
       <div className={styles.loginPrompt}>
         <p>You need to be logged in to view your saved items.</p>
-        <button onClick={() => signIn('google')} className={styles.button}>
+        <button onClick={() => signIn('google')} className="button buttonLogin">
           Log in with Google
         </button>
       </div>

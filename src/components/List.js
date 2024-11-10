@@ -17,6 +17,10 @@ function List({ items, onToggleConsumed, onDelete }) {
                 return <span className={styles.icon}>📺</span>; // Placeholder for series icon
             case 'book':
                 return <span className={styles.icon}>📚</span>; // Placeholder for book icon
+            case 'album':
+                return <span className={styles.icon}>🎵</span>; // Placeholder for album icon
+            case 'podcast':
+                return <span className={styles.icon}>🎙️</span>; // Placeholder for podcast icon
             default:
                 return <span className={styles.icon}>📄</span>; // Placeholder for default icon
         }
@@ -28,13 +32,15 @@ function List({ items, onToggleConsumed, onDelete }) {
                 {renderIcon(item.type)}
                 {item.poster && <img src={item.poster} alt={item.title} className={styles.listImg} />}
                 {item.thumbnail && <img src={item.thumbnail} alt={item.title} className={styles.listImg} />}
+                {item.image && <img src={item.image} alt={item.title} className={styles.listImg} />}
+                {item.imageUrl && <img src={item.imageUrl} alt={item.title} className={styles.listImg} />} {/* Add this line */}
                 <div>
                     <h3 className={styles.listTitleText}>{item.title}</h3>
                     {item.notes ? (
                         <p className={styles.listSubtext}>{item.notes}</p>
                     ) : (
                         <p className={styles.listSubtext}>
-                            {item.year || item.authors || 'Unknown'}
+                            {item.year || item.authors || item.publisher || 'Unknown'}
                         </p>
                     )}
                 </div>
@@ -54,26 +60,7 @@ function List({ items, onToggleConsumed, onDelete }) {
                             onClick={() => handleItemClick(item.id)}
                         >
                             {renderContent(item)}
-                            <div>
-                                <button
-                                    className={`${styles.button} ${styles.buttonCheck}`}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onToggleConsumed(index);
-                                    }}
-                                >
-                                    {item.consumed ? 'Uncheck' : 'Check'}
-                                </button>
-                                <button
-                                    className={`${styles.button} ${styles.buttonDelete}`}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onDelete(index);
-                                    }}
-                                >
-                                    Delete
-                                </button>
-                            </div>
+                            {/* Remove check/uncheck and delete buttons */}
                         </li>
                     ))}
                 </ul>

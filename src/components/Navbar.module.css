@@ -21,7 +21,8 @@
     margin-right: 1rem;
 }
 
-/* Button base styles */
+/* Remove button styles as they are now globally defined */
+/*
 .button {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -31,6 +32,7 @@
     border-radius: 0.25rem;
     cursor: pointer;
 }
+*/
 
 /* Login and Logout button colors */
 .buttonLogin {

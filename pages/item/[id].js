@@ -11,6 +11,8 @@ function ItemPage() {
     const [isEditingNotes, setIsEditingNotes] = useState(false);
     const [movieDetails, setMovieDetails] = useState(null);
     const [bookDetails, setBookDetails] = useState(null);
+    const [albumDetails, setAlbumDetails] = useState(null);
+    const [podcastDetails, setPodcastDetails] = useState(null);
 
     useEffect(() => {
         if (id && session) {
@@ -23,6 +25,10 @@ function ItemPage() {
                     fetchMovieDetails(foundItem.imdbID);
                 } else if (foundItem.type === 'book') {
                     fetchBookDetails(foundItem.title);
+                } else if (foundItem.type === 'album') {
+                    fetchAlbumDetails(foundItem.title);
+                } else if (foundItem.type === 'podcast') {
+                    fetchPodcastDetails(foundItem.title);
                 }
             }
         }
@@ -51,6 +57,44 @@ function ItemPage() {
             setBookDetails(data.items[0]);
         } catch (error) {
             console.error('Error fetching book details:', error);
+        }
+    };
+
+    const fetchAlbumDetails = async (title) => {
+        try {
+            console.log('Fetching album details for title:', title);
+            const response = await fetch(`https://osdb-api.confidence.sh/rest/${process.env.NEXT_PUBLIC_OSDB_API_KEY}/search/album?query=${encodeURIComponent(title)}&limit=1`);
+            const data = await response.json();
+            console.log('Parsed album details:', data);
+            setAlbumDetails(data.data[0]);
+        } catch (error) {
+            console.error('Error fetching album details:', error);
+        }
+    };
+
+    const fetchPodcastDetails = async (title) => {
+        try {
+            console.log('Fetching podcast details for title:', title);
+            const response = await fetch('https://api.taddy.org', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-USER-ID': process.env.NEXT_PUBLIC_TADDY_USER_ID,
+                    'X-API-KEY': process.env.NEXT_PUBLIC_TADDY_API_KEY,
+                },
+                body: JSON.stringify({
+                    query: `{ getPodcastSeries(name:"${title}") { uuid name description imageUrl itunesInfo { uuid publisherName baseArtworkUrlOf(size: 640) } } }`,
+                }),
+            });
+            const data = await response.json();
+            console.log('Parsed podcast details:', data);
+            if (data.data && data.data.getPodcastSeries) {
+                setPodcastDetails(data.data.getPodcastSeries);
+            } else {
+                throw new Error('Podcast details not found');
+            }
+        } catch (error) {
+            console.error('Error fetching podcast details:', error);
         }
     };
 
@@ -124,6 +168,35 @@ function ItemPage() {
                         </div>
                     </div>
                 )}
+                {albumDetails && (
+                    <div className={styles.detailsContainer}>
+                        <div className={styles.thumbnailContainer}>
+                            {albumDetails.image && (
+                                <img src={albumDetails.image} alt={albumDetails.name} className={styles.thumbnail} />
+                            )}
+                        </div>
+                        <div className={styles.infoContainer}>
+                            <h2>{albumDetails.name}</h2>
+                            <p><strong>Artist:</strong> {albumDetails.artist.map(a => a.name).join(', ')}</p>
+                            <p><strong>Year:</strong> {albumDetails.year}</p>
+                            <p><strong>Genre:</strong> {albumDetails.genre.map(g => g.name).join(', ')}</p>
+                        </div>
+                    </div>
+                )}
+                {podcastDetails && (
+                    <div className={styles.detailsContainer}>
+                        <div className={styles.thumbnailContainer}>
+                            {podcastDetails.imageUrl && (
+                                <img src={podcastDetails.imageUrl} alt={podcastDetails.name} className={styles.thumbnail} />
+                            )}
+                        </div>
+                        <div className={styles.infoContainer}>
+                            <h2>{podcastDetails.name}</h2>
+                            <p><strong>Publisher:</strong> {podcastDetails.itunesInfo.publisherName}</p>
+                            <p><strong>Description:</strong> {podcastDetails.description}</p>
+                        </div>
+                    </div>
+                )}
             </div>
             {isEditingNotes ? (
                 <>
@@ -133,27 +206,29 @@ function ItemPage() {
                         onChange={handleNotesChange}
                         placeholder="Add your notes here..."
                     />
-                    <button className={styles.buttonSave} onClick={handleSaveNotes}>
+                    <button className="button buttonSave" onClick={handleSaveNotes}>
                         Save Notes
                     </button>
                 </>
             ) : (
                 <>
                     <p className={styles.notesText}>{item.notes || 'No notes available.'}</p>
-                    <button className={styles.button} onClick={() => setIsEditingNotes(true)}>
-                        Edit Notes
-                    </button>
                 </>
             )}
-            <button className={styles.buttonBack} onClick={() => router.push('/')}>
-                Back to List
-            </button>
-            <button className={styles.button} onClick={handleToggleConsumed}>
-                {item.consumed ? 'Mark as Unconsumed' : 'Mark as Consumed'}
-            </button>
-            <button className={styles.buttonDelete} onClick={handleDeleteItem}>
-                Delete Item
-            </button>
+            <div className={styles.buttonContainer}>
+                <button className="button" onClick={() => router.push('/')}>
+                    Back
+                </button>
+                <button className="button" onClick={() => setIsEditingNotes(true)}>
+                    Edit
+                </button>
+                <button className="button" onClick={handleToggleConsumed}>
+                    {item.consumed ? 'Unconsume' : 'Consumed'}
+                </button>
+                <button className="button buttonDelete" onClick={handleDeleteItem}>
+                    Delete
+                </button>
+            </div>
         </div>
     );
 }

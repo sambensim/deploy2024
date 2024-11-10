@@ -2,6 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
+:root {
+    --background-color: #FFFCF1;
+    --text-color: #000000;
+    --dark-purple: #4502F7; /* Update dark purple color */
+    --light-purple: rgba(75, 0, 130, 0.5);
+}
 
 /* 1. Use a more-intuitive box-sizing model. */
 *, *::before, *::after {
@@ -10,9 +16,9 @@
 
 /* 2. Remove default margin */
 * {
-    --background-color: #FFFCF1;
     margin: 0;
     padding: 0; /* Ensure no padding */
+    outline: none;
 }
 
 /* Typographic tweaks!
@@ -25,7 +31,7 @@ body {
     padding: 0; /* Ensure no padding */
     font-family: 'Open Sans', sans-serif;
     background-color: var(--background-color);
-    /* color: var(--text-color); */
+    color: var(--text-color);
 }
 
 /* 5. Improve media defaults */
@@ -65,18 +71,18 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: var(--dark-purple);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: var(--background-color);
 }
 
 .App-link {
-    color: #61dafb;
+    color: var(--light-purple);
 }
 
 @keyframes App-logo-spin {
@@ -86,4 +92,58 @@ p, h1, h2, h3, h4, h5, h6 {
     to {
     transform: rotate(360deg);
     }
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+    background-color: var(--dark-purple);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--light-purple);
+}
+
+/* Specific button styles */
+.buttonLogin {
+    background-color: #3b82f6; /* Blue */
+}
+
+.buttonLogout {
+    background-color: #ef4444; /* Red */
+}
+
+/* Remove the buttonAdd class as it is no longer needed */
+/*
+.buttonAdd {
+    background-color: var(--light-purple);
+}
+*/
+
+.buttonSave {
+    background-color: var(--dark-purple);
+}
+
+.buttonBack {
+    background-color: var(--light-purple);
+}
+
+.buttonAddResult {
+    background-color: var(--dark-purple);
+    padding: 0.25rem 0.5rem;
+    color: var(--background-color);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonAddResult:hover {
+    background-color: var(--light-purple);
 }

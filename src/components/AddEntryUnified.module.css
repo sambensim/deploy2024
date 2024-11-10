@@ -14,28 +14,42 @@
 .inputField {
     flex: 1;
     padding: 0.5rem;
-    border: 1px solid #cbd5e0;
+    border: 1px solid var(--dark-purple);
     border-radius: 0.25rem;
     margin-right: 0.5rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    outline: none; /* Remove outline */
 }
 
-/* Button base styles */
+/* Remove button styles as they are now globally defined */
+/*
 .button {
     padding: 0.5rem 1rem;
-    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
+*/
 
 /* Specific button styles */
 .buttonSearch {
-    background-color: #3b82f6; /* Blue */
+    background-color: var(--dark-purple);
     margin-right: 0.5rem;
 }
 
 .buttonAdd {
-    background-color: #10b981; /* Green */
+    background-color: var(--light-purple);
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 /* Search results list */
@@ -48,7 +62,7 @@
 /* Individual result item */
 .resultItem {
     padding: 0.5rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--dark-purple);
     border-radius: 0.25rem;
     display: flex;
     justify-content: space-between;
@@ -79,15 +93,20 @@
 /* Subtitle styles */
 .subtitle {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--text-color);
 }
 
 /* Add button in results */
 .buttonAddResult {
-    background-color: #10b981; /* Green */
+    background-color: var(--dark-purple);
     padding: 0.25rem 0.5rem;
-    color: #ffffff;
+    color: var(--background-color);
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonAddResult:hover {
+    background-color: var(--light-purple);
 }

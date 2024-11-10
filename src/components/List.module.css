@@ -14,13 +14,13 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
-    border: 1px solid #e5e7eb; /* Light gray border */
     border-radius: 0.25rem; /* Rounded corners */
+    outline: none; /* Remove outline */
 }
 
 .consumed {
     text-decoration: line-through;
-    color: #6b7280; /* Gray color */
+    color: var(--text-color); /* Black color */
 }
 
 .listContent {
@@ -41,25 +41,24 @@
 
 .listSubtext {
     font-size: 0.875rem;
-    color: #6b7280;
-}
-
-.button {
-    /* Remove button styles */
-    display: none;
+    color: var(--text-color);
 }
 
 .buttonCheck {
-    background-color: #3b82f6; /* Blue */
+    background-color: var(--dark-purple);
     margin-right: 0.5rem;
 }
 
 .buttonDelete {
-    background-color: #ef4444; /* Red */
+    background-color: var(--dark-purple);
+}
+
+.button:hover {
+    background-color: var(--light-purple);
 }
 
 .noItems {
-    color: #6b7280; /* Gray */
+    color: var(--text-color); /* Black */
 }
 
 .icon {

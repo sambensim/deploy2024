@@ -2,33 +2,37 @@
 .container {
     max-width: 600px;
     margin: 0 auto;
-    padding: 4rem 1rem 1rem; /* Add top padding to account for the fixed navbar */
+    padding: 1rem 1rem 1rem; /* Reduce top padding */
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* Align items at the top */
+    outline: none;
 }
 
 /* Title styling */
 .title {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem; /* Reduce bottom margin */
     text-align: center;
+    outline: none;
 }
 
 /* Centered text and padding for login prompt */
 .loginPrompt {
     text-align: center;
-    padding: 20px;
+    padding: 10px; /* Reduce padding */
+    outline: none;
 }
 
-/* Button styling */
+/* Remove button styles as they are now globally defined */
+/*
 .button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     font-weight: 600;
-    color: #ffffff;
-    background-color: #3b82f6; /* Blue color */
+    color: var(--background-color);
+    background-color: var(--dark-purple);
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
@@ -36,14 +40,16 @@
 }
 
 .button:hover {
-    background-color: #2563eb; /* Darker blue on hover */
+    background-color: var(--light-purple);
 }
+*/
 
 /* Optional loading state styling */
 .loading {
     text-align: center;
     font-size: 1.2rem;
-    color: #555;
+    color: var(--text-color);
+    outline: none;
 }
 
 /* Logo container styling */
@@ -51,9 +57,14 @@
     display: flex;
     justify-content: center;
     margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    outline: none;
 }
 
 .logo {
     max-width: 100%;
     height: auto;
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    outline: none;
 }
