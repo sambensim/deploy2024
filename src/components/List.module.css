@@ -45,9 +45,8 @@
 }
 
 .button {
-    padding: 0.25rem 0.5rem;
-    color: white;
-    border-radius: 0.25rem;
+    /* Remove button styles */
+    display: none;
 }
 
 .buttonCheck {
@@ -61,4 +60,9 @@
 
 .noItems {
     color: #6b7280; /* Gray */
+}
+
+.icon {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
 }

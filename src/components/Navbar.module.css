@@ -1,0 +1,47 @@
+/* Navbar container styles */
+.navContainer {
+    width: 100%; /* Stretch across the entire width */
+    padding: 0.5rem 1rem; /* Adjust padding to make it thinner */
+    background-color: #f8f9fa; /* Light background color */
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Fix it to the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Welcome message */
+.welcomeMessage {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-right: 1rem;
+}
+
+/* Button base styles */
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+/* Login and Logout button colors */
+.buttonLogin {
+    background-color: #3b82f6; /* Blue */
+}
+
+.buttonLogout {
+    background-color: #ef4444; /* Red */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    opacity: 0.9;
+}

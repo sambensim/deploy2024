@@ -13,9 +13,9 @@ const handleSearch = async (type) => {
     if (type === 'book') {
         url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
         input
-        )}&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`;
+        )}&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY}`;
     } else if (type === 'movie') {
-        url = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&s=${encodeURIComponent(
+        url = `https://www.omdbapi.com/?apikey=${process.env.NEXT_PUBLIC_OMDB_API_KEY}&s=${encodeURIComponent(
         input
         )}`;
     }
@@ -46,6 +46,7 @@ const handleAdd = (item) => {
         : 'Unknown Author',
         thumbnail: item.volumeInfo.imageLinks?.thumbnail || null,
         consumed: false,
+        notes: '', // Add notes field
     });
     } else if (item.Title) {
     // Movie structure
@@ -54,12 +55,14 @@ const handleAdd = (item) => {
         title: item.Title,
         year: item.Year,
         poster: item.Poster,
+        imdbID: item.imdbID, // Ensure imdbID is stored
         consumed: false,
+        notes: '', // Add notes field
     });
     } else {
     // Plain text
     if (input.trim() === '') return;
-    onAdd({ type: 'plaintext', title: input, consumed: false });
+    onAdd({ type: 'plaintext', title: input, consumed: false, notes: '' }); // Add notes field
     }
 
     setInput('');
@@ -104,21 +107,23 @@ return (
             className={styles.resultItem}
             >
             <div className={styles.resultContent}>
+                <div className={styles.thumbnailContainer}>
                 {item.volumeInfo?.imageLinks?.thumbnail && (
-                <img
+                    <img
                     src={item.volumeInfo.imageLinks.thumbnail}
                     alt={item.volumeInfo.title}
                     className={styles.thumbnail}
-                />
+                    />
                 )}
                 {item.Poster && item.Poster !== 'N/A' && (
-                <img
+                    <img
                     src={item.Poster}
                     alt={item.Title}
                     className={styles.thumbnail}
-                />
+                    />
                 )}
-                <div>
+                </div>
+                <div className={styles.infoContainer}>
                 <h3 className={styles.title}>
                     {item.volumeInfo
                     ? item.volumeInfo.title

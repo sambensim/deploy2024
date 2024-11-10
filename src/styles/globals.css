@@ -12,6 +12,7 @@
 * {
     --background-color: #FFFCF1;
     margin: 0;
+    padding: 0; /* Ensure no padding */
 }
 
 /* Typographic tweaks!
@@ -21,6 +22,7 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     margin: 0;
+    padding: 0; /* Ensure no padding */
     font-family: 'Open Sans', sans-serif;
     background-color: var(--background-color);
     /* color: var(--text-color); */
