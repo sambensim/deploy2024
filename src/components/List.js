@@ -50,8 +50,7 @@ function List({ items, onToggleConsumed, onDelete }) {
 
     const filteredItems = items
         .filter((item) => filters[item.type] && (filters.consumed || !item.consumed))
-        .sort((a, b) => a.consumed - b.consumed)
-        .reverse();
+        .sort((a, b) => a.consumed - b.consumed); // Ensure consumed items are at the bottom
 
     function renderIcon(type) {
         switch (type) {
