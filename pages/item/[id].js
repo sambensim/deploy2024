@@ -13,6 +13,7 @@ function ItemPage() {
     const [bookDetails, setBookDetails] = useState(null);
     const [albumDetails, setAlbumDetails] = useState(null);
     const [podcastDetails, setPodcastDetails] = useState(null);
+    const [expandedItems, setExpandedItems] = useState({});
 
     useEffect(() => {
         if (id && session) {
@@ -127,9 +128,24 @@ function ItemPage() {
         localStorage.setItem(`user_items_${session.user.id}`, JSON.stringify(updatedItems));
     };
 
+    const handleToggleExpand = (id) => {
+        setExpandedItems((prevExpandedItems) => ({
+            ...prevExpandedItems,
+            [id]: !prevExpandedItems[id],
+        }));
+    };
+
+    const truncateText = (text, length) => {
+        if (text.length <= length) return text;
+        return text.substring(0, length) + '...';
+    };
+
     if (!item) {
         return <p className={styles.loading}>Loading...</p>;
     }
+
+    const isExpanded = expandedItems[item.id];
+    const description = item.notes || item.bodyText || '';
 
     return (
         <div className={styles.container}>
@@ -147,7 +163,16 @@ function ItemPage() {
                             <p><strong>Director:</strong> {movieDetails.Director}</p>
                             <p><strong>Writer:</strong> {movieDetails.Writer}</p>
                             <p><strong>Actors:</strong> {movieDetails.Actors}</p>
-                            <p><strong>Plot:</strong> {movieDetails.Plot}</p>
+                            <p><strong>Plot:</strong> {isExpanded ? movieDetails.Plot : truncateText(movieDetails.Plot, 300)}
+                                {movieDetails.Plot.length > 100 && (
+                                    <button
+                                        className={styles.seeMoreButton}
+                                        onClick={() => handleToggleExpand(item.id)}
+                                    >
+                                        {isExpanded ? 'See less' : 'See more'}
+                                    </button>
+                                )}
+                            </p>
                         </div>
                     </div>
                 )}
@@ -162,7 +187,16 @@ function ItemPage() {
                             <p><strong>Authors:</strong> {bookDetails.volumeInfo.authors.join(', ')}</p>
                             <p><strong>Published Date:</strong> {bookDetails.volumeInfo.publishedDate}</p>
                             <p><strong>Publisher:</strong> {bookDetails.volumeInfo.publisher}</p>
-                            <p><strong>Description:</strong> {bookDetails.volumeInfo.description}</p>
+                            <p><strong>Description:</strong> {isExpanded ? bookDetails.volumeInfo.description : truncateText(bookDetails.volumeInfo.description, 300)}
+                                {bookDetails.volumeInfo.description.length > 100 && (
+                                    <button
+                                        className={styles.seeMoreButton}
+                                        onClick={() => handleToggleExpand(item.id)}
+                                    >
+                                        {isExpanded ? 'See less' : 'See more'}
+                                    </button>
+                                )}
+                            </p>
                         </div>
                     </div>
                 )}
@@ -200,7 +234,7 @@ function ItemPage() {
                         </div>
                         <div className={styles.infoContainer}>
                             <p><strong>URL:</strong> <a href={item.url} target="_blank" rel="noopener noreferrer">{item.url}</a></p>
-                            <p><strong>Sample Text:</strong> {item.bodyText}</p>
+                            <p><strong>Sample Text:</strong> {item.bodyText}...</p>
                         </div>
                     </div>
                 )}

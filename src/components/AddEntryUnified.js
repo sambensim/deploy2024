@@ -152,7 +152,7 @@ function AddEntry({ onAdd }) {
                     className={`button ${styles.buttonSearch}`}
                     onClick={() => handleSearch('movie')}
                 >
-                    Movie
+                    Movie/TV
                 </button>
                 <button
                     className={`button ${styles.buttonSearch}`}
@@ -167,13 +167,13 @@ function AddEntry({ onAdd }) {
                     Podcast
                 </button>
                 <button
-                    className="button"
+                    className={`button ${styles.buttonSearch}`} // Use the same class as the search buttons
                     onClick={() => handleAdd({ type: 'link', url: input })}
                 >
                     Link
                 </button>
                 <button
-                    className="button"
+                    className={`button ${styles.buttonSearch}`} // Use the same class as the search buttons
                     onClick={() => handleAdd({ type: 'plaintext' })}
                 >
                     Note

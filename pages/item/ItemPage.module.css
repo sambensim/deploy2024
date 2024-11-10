@@ -147,3 +147,13 @@
     align-items: flex-start;
     margin-bottom: 1rem;
 }
+
+.seeMoreButton {
+    background: none;
+    border: none;
+    color: var(--dark-purple);
+    cursor: pointer;
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
+    text-decoration: underline;
+}

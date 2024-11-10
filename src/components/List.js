@@ -1,13 +1,57 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './List.module.css';
 
 function List({ items, onToggleConsumed, onDelete }) {
     const router = useRouter();
+    const [filterVisible, setFilterVisible] = useState(false);
+    const [filters, setFilters] = useState({
+        movie: true,
+        series: true,
+        book: true,
+        album: true,
+        podcast: true,
+        link: true,
+        plaintext: true,
+        consumed: true,
+    });
+    const filterDropdownRef = useRef(null);
+    const filterPlaceholderRef = useRef(null);
+
+    useEffect(() => {
+        if (filterDropdownRef.current && filterPlaceholderRef.current) {
+            filterPlaceholderRef.current.style.height = filterVisible
+                ? `${filterDropdownRef.current.scrollHeight}px`
+                : '0';
+        }
+    }, [filterVisible]);
 
     const handleItemClick = (id) => {
         router.push(`/item/${id}`);
     };
+
+    const handleFilterChange = (type) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [type]: !prevFilters[type],
+        }));
+    };
+
+    const handleSelectAll = () => {
+        const allSelected = Object.values(filters).every((value) => value);
+        setFilters((prevFilters) => {
+            const newFilters = {};
+            Object.keys(prevFilters).forEach((key) => {
+                newFilters[key] = !allSelected;
+            });
+            return newFilters;
+        });
+    };
+
+    const filteredItems = items
+        .filter((item) => filters[item.type] && (filters.consumed || !item.consumed))
+        .sort((a, b) => a.consumed - b.consumed)
+        .reverse();
 
     function renderIcon(type) {
         switch (type) {
@@ -54,9 +98,34 @@ function List({ items, onToggleConsumed, onDelete }) {
     return (
         <div className={styles.listContainer}>
             <h2 className={styles.listTitle}>My List</h2>
-            {items.length > 0 ? (
+            <button
+                className={styles.filterButton}
+                onClick={() => setFilterVisible(!filterVisible)}
+            >
+                Filter
+            </button>
+            <div
+                ref={filterDropdownRef}
+                className={`${styles.filterDropdown} ${filterVisible ? styles.show : ''}`}
+            >
+                <div className={styles.filterToggle} onClick={handleSelectAll}>
+                    {Object.values(filters).every((value) => value) ? 'Deselect All' : 'Select All'}
+                </div>
+                {Object.keys(filters).map((type) => (
+                    <label key={type} className={styles.filterOption}>
+                        <input
+                            type="checkbox"
+                            checked={filters[type]}
+                            onChange={() => handleFilterChange(type)}
+                        />
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
+                    </label>
+                ))}
+            </div>
+            <div ref={filterPlaceholderRef} className={styles.filterPlaceholder}></div>
+            {filteredItems.length > 0 ? (
                 <ul>
-                    {items.map((item, index) => (
+                    {filteredItems.map((item, index) => (
                         <li
                             key={index}
                             className={`${styles.listItem} ${item.consumed ? styles.consumed : ''}`}

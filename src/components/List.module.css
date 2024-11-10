@@ -65,3 +65,58 @@
     margin-right: 0.5rem;
     font-size: 1.25rem;
 }
+
+.checkmark {
+    display: none; /* Remove the checkmark */
+}
+
+.filterButton {
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--background-color);
+    background-color: var(--dark-purple);
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filterButton:hover {
+    background-color: var(--light-purple);
+}
+
+.filterDropdown {
+    display: none;
+    flex-direction: column;
+    background-color: var(--background-color);
+    border: 1px solid var(--dark-purple);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    position: absolute;
+    z-index: 1;
+}
+
+.filterDropdown.show {
+    display: flex;
+}
+
+.filterOption {
+    margin-bottom: 0.5rem;
+}
+
+.filterToggle {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filterPlaceholder {
+    height: 0;
+    transition: height 0.3s;
+}
+
+.filterPlaceholder.show {
+    height: auto;
+}

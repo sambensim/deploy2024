@@ -37,17 +37,22 @@
 */
 
 /* Specific button styles */
-.buttonSearch {
+.buttonSearch, .buttonAdd {
     background-color: var(--dark-purple);
     margin-right: 0.5rem;
-}
-
-.buttonAdd {
-    background-color: var(--light-purple);
+    flex: 1;
+    min-width: 80px; /* Reduce the minimum width */
+    padding: 0.25rem 0.5rem; /* Reduce padding */
+    text-align: center;
+    font-size: 0.875rem; /* Reduce font size */
+    height: 2.5rem; /* Set a consistent height */
 }
 
 .buttonContainer {
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px; /* Add some gap between buttons */
     align-items: center;
     margin-bottom: 1rem;
 }
